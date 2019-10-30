@@ -1,4 +1,15 @@
 {
+	"extends": [
+		"stylelint-config-standard"
+	],
+	"processors": [
+		"stylelint-processor-html"
+	],
+	"ignoreFiles": [
+		"**/node_modules/**/*",
+		"**/**/*.vue",
+		"**/**/*.js"
+	],
 	"rules": {
 		"color-no-invalid-hex": [
 			true
