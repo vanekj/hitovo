@@ -7,6 +7,7 @@
 		"build": "vue-cli-service build"
 	},
 	"dependencies": {
+		"buefy": "^0.8.6",
 		"vue": "^2.6.10"
 	},
 	"devDependencies": {
@@ -14,8 +15,10 @@
 		"babel-eslint": "^10.0.3",
 		"eslint": "^6.6.0",
 		"eslint-plugin-vue": "^5.2.3",
+		"node-sass": "^4.13.0",
 		"postcss-import": "^12.0.1",
 		"postcss-preset-env": "^6.7.0",
+		"sass-loader": "^8.0.0",
 		"stylelint": "^11.1.1",
 		"stylelint-config-standard": "^19.0.0",
 		"stylelint-processor-html": "^1.0.0",
