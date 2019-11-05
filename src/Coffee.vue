@@ -8,13 +8,13 @@
 						<td style="width: 50%">
 							<label v-for="ratio in items.ratios" :key="ratio.value" style="display: block; padding: 3px 0;">
 								<input name="ratio" type="radio" :value="ratio.value" :checked="ratio.value === selected.ratio.value" @change="calculateRatio(ratio)" />
-								<strong>{{ ratio.label }}</strong>
+								<strong>&nbsp;{{ ratio.label }}</strong>
 							</label>
 						</td>
 						<td style="width: 50%;">
 							<div class="coffee-wrapper">
 								<transition-group name="coffee-image-switch">
-									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio.value" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
+									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio.value" :key="ratio.value" :src="`/assets/coffee/${ratio.image}.svg`" />
 								</transition-group>
 							</div>
 						</td>
@@ -32,13 +32,13 @@
 					<td style="width: 50%">
 						<fieldset>
 							<legend>Coffee</legend>
-							<input v-model="calculated.coffee" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @change="calculateWater" />
+							<input v-model="calculated.coffee" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @input="calculateWater" />
 						</fieldset>
 					</td>
 					<td style="width: 50%">
 						<fieldset>
 							<legend>Water</legend>
-							<input v-model="calculated.water" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @change="calculateCoffee" />
+							<input v-model="calculated.water" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @input="calculateCoffee" />
 						</fieldset>
 					</td>
 				</tr>
@@ -46,7 +46,13 @@
 		</table>
 		<center>
 			<br />
-			<strong>🎉&nbsp;HITOVO!&nbsp;🎉</strong>
+			<img src="/assets/letters/c_h.png" alt="H" height="32" />
+			<img src="/assets/letters/c_i.png" alt="I" height="32" />
+			<img src="/assets/letters/c_t.png" alt="T" height="32" />
+			<img src="/assets/letters/c_o.png" alt="O" height="32" />
+			<img src="/assets/letters/c_v.png" alt="V" height="32" />
+			<img src="/assets/letters/c_o.png" alt="O" height="32" />
+			<img src="/assets/letters/c_exclamation.png" alt="!" height="32" />
 		</center>
 	</div>
 </template>
@@ -122,8 +128,10 @@
 
 <style lang="postcss">
 	#app {
-		margin: 0 auto;
+		margin: 1rem auto;
 		max-width: 450px;
+		font-family: system-ui;
+		user-select: none;
 	}
 
 	.coffee-wrapper {
