@@ -13,8 +13,12 @@
 								</label>
 							</div>
 						</td>
-						<td style="width: 50%; text-align: center;">
-							<img v-for="(ratio, index) in items.ratios" v-show="ratio.value === selected.ratio.value" :key="index" :src="`/assets/${ratio.image}.svg`" height="100" />
+						<td style="width: 50%;">
+							<div class="coffee-wrapper">
+								<transition-group name="coffee-image-switch">
+									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio.value" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
+								</transition-group>
+							</div>
 						</td>
 					</tr>
 				</tbody>
@@ -113,3 +117,41 @@
 		}
 	};
 </script>
+
+<style lang="postcss">
+	.coffee-wrapper {
+		position: relative;
+		height: 100px;
+		text-align: center;
+		overflow: hidden;
+
+		& span {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+		}
+
+		& img {
+			position: absolute;
+			height: 100%;
+		}
+	}
+
+	.coffee-image-switch-enter-active, .coffee-image-switch-leave-active {
+		transition: all 300ms;
+	}
+
+	.coffee-image-switch-enter, .coffee-image-switch-leave-active {
+		opacity: 0;
+	}
+
+	.coffee-image-switch-enter {
+		transform: translateX(100px);
+	}
+
+	.coffee-image-switch-leave-active {
+		transform: translateX(-100px);
+	}
+</style>
