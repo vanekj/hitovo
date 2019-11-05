@@ -2,31 +2,41 @@
 	<div id="app">
 		<fieldset>
 			<legend>Select the brewing method</legend>
-			<center>
-				<img v-for="(ratio, index) in items.ratios" v-show="ratio.value === selected.ratio.value" :key="index" :src="`/assets/${ratio.image}.svg`" height="120" />
-			</center>
-			<br />
-			<div v-for="(ratio, index) in items.ratios" :key="index">
-				<label>
-					<input name="ratio" type="radio" :value="ratio.value" :checked="ratio.value === selected.ratio.value" @change="calculateRatio(ratio)" />
-					{{ ratio.label }} <small>({{ ratio.value }})</small>
-				</label>
-			</div>
+			<table cellpadding="0" cellspacing="0" style="width: 100%;">
+				<tbody>
+					<tr>
+						<td style="width: 50%">
+							<div v-for="(ratio, index) in items.ratios" :key="index">
+								<label>
+									<input name="ratio" type="radio" :value="ratio.value" :checked="ratio.value === selected.ratio.value" @change="calculateRatio(ratio)" />
+									{{ ratio.label }}
+								</label>
+							</div>
+						</td>
+						<td style="width: 50%; text-align: center;">
+							<img v-for="(ratio, index) in items.ratios" v-show="ratio.value === selected.ratio.value" :key="index" :src="`/assets/${ratio.image}.svg`" height="100" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</fieldset>
-		<br />
+		<fieldset>
+			<legend>Ratio</legend>
+			<div style="font-size: 200%; font-weight: bold; text-align: center;">{{ selected.ratio.value }}</div>
+		</fieldset>
 		<table cellpadding="0" cellspacing="0" style="width: 100%;">
 			<tbody>
 				<tr>
-					<td>
+					<td style="width: 50%">
 						<fieldset>
 							<legend>Coffee</legend>
-							<input v-model="calculated.coffee" type="number" min="1" style="width: 100%;" @change="calculateWater" />
+							<input v-model="calculated.coffee" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @change="calculateWater" />
 						</fieldset>
 					</td>
-					<td>
+					<td style="width: 50%">
 						<fieldset>
 							<legend>Water</legend>
-							<input v-model="calculated.water" type="number" min="1" style="width: 100%;" @change="calculateCoffee" />
+							<input v-model="calculated.water" type="number" min="1" style="width: 100%; font-size: 200%; font-weight: bold; text-align: center;" @change="calculateCoffee" />
 						</fieldset>
 					</td>
 				</tr>
