@@ -6,12 +6,10 @@
 				<tbody>
 					<tr>
 						<td style="width: 50%">
-							<div v-for="(ratio, index) in items.ratios" :key="index">
-								<label>
-									<input name="ratio" type="radio" :value="ratio.value" :checked="ratio.value === selected.ratio.value" @change="calculateRatio(ratio)" />
-									{{ ratio.label }}
-								</label>
-							</div>
+							<label v-for="ratio in items.ratios" :key="ratio.value" style="display: block; padding: 3px 0;">
+								<input name="ratio" type="radio" :value="ratio.value" :checked="ratio.value === selected.ratio.value" @change="calculateRatio(ratio)" />
+								<strong>{{ ratio.label }}</strong>
+							</label>
 						</td>
 						<td style="width: 50%;">
 							<div class="coffee-wrapper">
@@ -46,6 +44,10 @@
 				</tr>
 			</tbody>
 		</table>
+		<center>
+			<br />
+			<strong>🎉&nbsp;HITOVO!&nbsp;🎉</strong>
+		</center>
 	</div>
 </template>
 
@@ -119,9 +121,14 @@
 </script>
 
 <style lang="postcss">
+	#app {
+		margin: 0 auto;
+		max-width: 450px;
+	}
+
 	.coffee-wrapper {
 		position: relative;
-		height: 100px;
+		height: 130px;
 		text-align: center;
 		overflow: hidden;
 
