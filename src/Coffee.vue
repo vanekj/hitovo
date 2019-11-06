@@ -183,11 +183,13 @@
 		}
 	}
 
-	.coffee-image-switch-enter-active, .coffee-image-switch-leave-active {
+	.coffee-image-switch-enter-active,
+	.coffee-image-switch-leave-active {
 		transition: all 300ms;
 	}
 
-	.coffee-image-switch-enter, .coffee-image-switch-leave-active {
+	.coffee-image-switch-enter,
+	.coffee-image-switch-leave-active {
 		opacity: 0;
 	}
 

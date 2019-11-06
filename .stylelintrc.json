@@ -7,7 +7,6 @@
 	],
 	"ignoreFiles": [
 		"**/node_modules/**/*",
-		"**/**/*.vue",
 		"**/**/*.js"
 	],
 	"rules": {
