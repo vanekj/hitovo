@@ -1,4 +1,4 @@
-# Coffee
+# Hitovo
 
 ## Project setup
 ```

@@ -1,5 +1,5 @@
 {
-	"name": "coffee",
+	"name": "hitovo",
 	"version": "1.0.0",
 	"description": "Coffee to water ratio calculator application",
 	"author": {
@@ -28,11 +28,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vanekj/coffee"
+		"url": "https://github.com/vanekj/hitovo"
 	},
 	"bugs": {
 		"email": "info@jakub-vanek.eu",
-		"url": "https://github.com/vanekj/coffee/issues"
+		"url": "https://github.com/vanekj/hitovo/issues"
 	},
 	"engines": {
 		"node": ">=12",
