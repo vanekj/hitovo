@@ -17,7 +17,7 @@
 							</label>
 						</div>
 						<div class="column is-hidden-mobile">
-							<div class="coffee-images">
+							<div class="coffee-images h-very-center">
 								<transition-group name="fade-in-out">
 									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
 								</transition-group>
@@ -35,7 +35,17 @@
 					</div>
 				</div>
 				<div class="card-content">
-					<b-input :value="selected.ratio" size="is-medium" custom-class="has-text-centered" expanded disabled />
+					<div class="columns is-gapless">
+						<div class="column">
+							<b-numberinput v-model="selected.customRatio[0]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
+						</div>
+						<div class="column is-2 is-size-4 has-text-weight-bold h-very-center">
+							:
+						</div>
+						<div class="column">
+							<b-numberinput v-model="selected.customRatio[1]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -102,7 +112,8 @@
 					}]
 				},
 				selected: {
-					ratio: null
+					ratio: null,
+					customRatio: [0, 0]
 				},
 				calculated: {
 					ratio: null,
@@ -125,9 +136,23 @@
 		},
 		methods: {
 			calculateRatio(selectedRatio) {
-				let [first, second] = selectedRatio.value.split(':');
-				this.calculated.ratio = first / second;
+				let ratioArray = selectedRatio.value.split(':').map(Number);
+				this.calculated.ratio = ratioArray[0] / ratioArray[1];
 				this.selected.ratio = selectedRatio.value;
+				this.selected.customRatio = ratioArray;
+			},
+			customRatio() {
+				let ratioString = this.selected.customRatio.join(':'),
+					matchingRatio = this.items.ratios.find((ratio) => ratio.value === ratioString);
+				if (matchingRatio) {
+					this.calculateRatio(matchingRatio);
+				} else {
+					this.calculateRatio({
+						value: ratioString,
+						label: 'Custom',
+						image: 'blank'
+					});
+				}
 			},
 			calculateWater() {
 				this.calculated.water = Math.round(this.calculated.coffee / this.calculated.ratio);
@@ -177,9 +202,6 @@
 	}
 
 	.coffee-images {
-		display: flex;
-		justify-content: center;
-		align-items: center;
 		height: 100%;
 
 		span {
@@ -214,5 +236,11 @@
 
 	.fade-in-out-leave-active {
 		transform: translateX(-100px);
+	}
+
+	.h-very-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 </style>
