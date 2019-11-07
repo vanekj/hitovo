@@ -6,16 +6,20 @@
 					<div class="card-header-title">Select the brewing method</div>
 				</div>
 				<div class="card-content">
-					<transition name="expand">
-						<div v-show="items.ratios.find((ratio) => ratio.value === selected.ratio)" class="coffee-images h-very-center is-hidden-mobile">
-							<transition-group name="fade">
-								<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
-							</transition-group>
+					<div class="columns">
+						<div class="column">
+							<label v-for="ratio in items.ratios" :key="ratio.value" class="h-label">
+								<b-radio v-model="selected.ratio" name="ratio" :native-value="ratio.value" @input="calculateRatio(ratio)">
+									<span :class="{ 'has-text-weight-medium': selected.ratio === ratio.value }">{{ ratio.label }}</span>
+								</b-radio>
+							</label>
 						</div>
-					</transition>
-					<div class="columns is-multiline">
-						<div v-for="ratio in items.ratios" :key="ratio.value" class="column is-4 is-6-mobile">
-							<b-button :type="ratio.value === selected.ratio ? 'is-primary' : 'is-light'" expanded @click="calculateRatio(ratio)">{{ ratio.label }}</b-button>
+						<div class="column">
+							<div class="h-images h-very-center">
+								<transition-group name="fade">
+									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
+								</transition-group>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -155,7 +159,7 @@
 	// Import Bulma variables
 	@import "~bulma/sass/utilities/_all";
 
-	// Customize Bulma variables
+	// Override Bulma variables
 	$primary: $coffee;
 
 	// Import the rest of framework
@@ -176,19 +180,22 @@
 	#app {
 		margin: 0 auto;
 		max-width: 500px;
-		padding-right: 0.75rem;
-		padding-left: 0.75rem;
+		padding-right: $column-gap;
+		padding-left: $column-gap;
 	}
 
 	.container {
-		padding-top: 0.75rem;
-		padding-bottom: 0.75rem;
+		padding-top: $column-gap;
+		padding-bottom: $column-gap;
 	}
 
-	.coffee-images {
-		margin-bottom: 1.5rem;
-		height: 130px;
-		overflow: hidden;
+	.h-label {
+		display: block;
+		padding: 5px 0;
+	}
+
+	.h-images {
+		height: 100%;
 
 		span {
 			position: relative;
@@ -196,7 +203,7 @@
 			justify-content: center;
 			align-items: center;
 			width: 100%;
-			height: 100%;
+			height: 130px;
 			overflow: hidden;
 		}
 
@@ -206,10 +213,14 @@
 		}
 	}
 
+	.h-very-center {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
 	.fade-enter-active,
-	.fade-leave-active,
-	.expand-enter-active,
-	.expand-leave-active {
+	.fade-leave-active {
 		transition: all 300ms;
 	}
 
@@ -219,22 +230,10 @@
 	}
 
 	.fade-enter {
-		transform: translateX(150px);
+		transform: translateX(100px);
 	}
 
 	.fade-leave-active {
-		transform: translateX(-150px);
-	}
-
-	.expand-enter,
-	.expand-leave-to {
-		height: 0;
-		margin-bottom: 0;
-	}
-
-	.h-very-center {
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		transform: translateX(-100px);
 	}
 </style>
