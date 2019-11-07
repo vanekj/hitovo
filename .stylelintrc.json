@@ -601,7 +601,6 @@
 			{
 				"severity": "warning"
 			}
-		],
-		"selector-nested-pattern": "^&"
+		]
 	}
 }
