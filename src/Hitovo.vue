@@ -17,8 +17,8 @@
 							</label>
 						</div>
 						<div class="column is-hidden-mobile">
-							<div class="coffee-wrapper">
-								<transition-group name="coffee-image-switch">
+							<div class="coffee-images">
+								<transition-group name="fade-in-out">
 									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
 								</transition-group>
 							</div>
@@ -139,7 +139,21 @@
 	};
 </script>
 
-<style lang="postcss">
+<style lang="scss">
+	// Custom variables
+	$coffee: #ae7d5b;
+
+	// Import Bulma variables
+	@import "~bulma/sass/utilities/_all";
+
+	// Customize Bulma variables
+	$primary: $coffee;
+
+	// Import the rest of framework
+	@import "~bulma";
+	@import "~buefy/src/scss/buefy";
+
+	// Custom styles
 	html {
 		height: 100%;
 	}
@@ -147,6 +161,7 @@
 	body {
 		min-height: 100%;
 		user-select: none;
+		background-color: $white-bis;
 	}
 
 	#app {
@@ -161,13 +176,13 @@
 		padding-bottom: 0.75rem;
 	}
 
-	.coffee-wrapper {
+	.coffee-images {
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		height: 100%;
 
-		& span {
+		span {
 			position: relative;
 			display: flex;
 			justify-content: center;
@@ -177,31 +192,27 @@
 			overflow: hidden;
 		}
 
-		& img {
+		img {
 			position: absolute;
 			height: 100%;
 		}
 	}
 
-	.coffee-image-switch-enter-active,
-	.coffee-image-switch-leave-active {
+	.fade-in-out-enter-active,
+	.fade-in-out-leave-active {
 		transition: all 300ms;
 	}
 
-	.coffee-image-switch-enter,
-	.coffee-image-switch-leave-active {
+	.fade-in-out-enter,
+	.fade-in-out-leave-active {
 		opacity: 0;
 	}
 
-	.coffee-image-switch-enter {
+	.fade-in-out-enter {
 		transform: translateX(100px);
 	}
 
-	.coffee-image-switch-leave-active {
+	.fade-in-out-leave-active {
 		transform: translateX(-100px);
-	}
-
-	.letter-image {
-		height: 24px;
 	}
 </style>
