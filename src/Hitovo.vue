@@ -3,25 +3,19 @@
 		<div class="container">
 			<div class="card">
 				<div class="card-header">
-					<div class="card-header-title">
-						Select the brewing method
-					</div>
+					<div class="card-header-title">Select the brewing method</div>
 				</div>
 				<div class="card-content">
-					<div class="columns">
-						<div class="column">
-							<label v-for="ratio in items.ratios" :key="ratio.value" style="display: block; padding: 3px 0;">
-								<b-radio v-model="selected.ratio" name="ratio" :native-value="ratio.value" @input="calculateRatio(ratio)">
-									<span :class="{ 'has-text-weight-medium': selected.ratio === ratio.value }">{{ ratio.label }}</span>
-								</b-radio>
-							</label>
+					<transition name="expand">
+						<div v-show="items.ratios.find((ratio) => ratio.value === selected.ratio)" class="coffee-images h-very-center is-hidden-mobile">
+							<transition-group name="fade">
+								<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
+							</transition-group>
 						</div>
-						<div class="column is-hidden-mobile">
-							<div class="coffee-images h-very-center">
-								<transition-group name="fade-in-out">
-									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
-								</transition-group>
-							</div>
+					</transition>
+					<div class="columns is-multiline">
+						<div v-for="ratio in items.ratios" :key="ratio.value" class="column is-4 is-6-mobile">
+							<b-button :type="ratio.value === selected.ratio ? 'is-primary' : 'is-light'" expanded @click="calculateRatio(ratio)">{{ ratio.label }}</b-button>
 						</div>
 					</div>
 				</div>
@@ -30,18 +24,14 @@
 		<div class="container">
 			<div class="card">
 				<div class="card-header">
-					<div class="card-header-title">
-						Ratio
-					</div>
+					<div class="card-header-title">Ratio</div>
 				</div>
 				<div class="card-content">
 					<div class="columns is-gapless">
 						<div class="column">
 							<b-numberinput v-model="selected.customRatio[0]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
 						</div>
-						<div class="column is-2 is-size-4 has-text-weight-bold h-very-center">
-							:
-						</div>
+						<div class="column is-2 is-size-4 has-text-weight-bold h-very-center">:</div>
 						<div class="column">
 							<b-numberinput v-model="selected.customRatio[1]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
 						</div>
@@ -54,9 +44,7 @@
 				<div class="column">
 					<div class="card">
 						<div class="card-header">
-							<div class="card-header-title">
-								Coffee
-							</div>
+							<div class="card-header-title">Coffee</div>
 						</div>
 						<div class="card-content">
 							<b-numberinput v-model="calculated.coffee" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculateWater" />
@@ -66,9 +54,7 @@
 				<div class="column">
 					<div class="card">
 						<div class="card-header">
-							<div class="card-header-title">
-								Water
-							</div>
+							<div class="card-header-title">Water</div>
 						</div>
 						<div class="card-content">
 							<b-numberinput v-model="calculated.water" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculateCoffee" />
@@ -148,9 +134,7 @@
 					this.calculateRatio(matchingRatio);
 				} else {
 					this.calculateRatio({
-						value: ratioString,
-						label: 'Custom',
-						image: 'blank'
+						value: ratioString
 					});
 				}
 			},
@@ -202,7 +186,9 @@
 	}
 
 	.coffee-images {
-		height: 100%;
+		margin-bottom: 1.5rem;
+		height: 130px;
+		overflow: hidden;
 
 		span {
 			position: relative;
@@ -210,7 +196,7 @@
 			justify-content: center;
 			align-items: center;
 			width: 100%;
-			height: 130px;
+			height: 100%;
 			overflow: hidden;
 		}
 
@@ -220,22 +206,30 @@
 		}
 	}
 
-	.fade-in-out-enter-active,
-	.fade-in-out-leave-active {
+	.fade-enter-active,
+	.fade-leave-active,
+	.expand-enter-active,
+	.expand-leave-active {
 		transition: all 300ms;
 	}
 
-	.fade-in-out-enter,
-	.fade-in-out-leave-active {
+	.fade-enter,
+	.fade-leave-active {
 		opacity: 0;
 	}
 
-	.fade-in-out-enter {
-		transform: translateX(100px);
+	.fade-enter {
+		transform: translateX(150px);
 	}
 
-	.fade-in-out-leave-active {
-		transform: translateX(-100px);
+	.fade-leave-active {
+		transform: translateX(-150px);
+	}
+
+	.expand-enter,
+	.expand-leave-to {
+		height: 0;
+		margin-bottom: 0;
 	}
 
 	.h-very-center {
