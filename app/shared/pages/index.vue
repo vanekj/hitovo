@@ -153,20 +153,20 @@
 </script>
 
 <style lang="scss">
-	// Custom variables
+	/* Custom variables */
 	$coffee: #ae7d5b;
 
-	// Import Bulma variables
+	/* Import Bulma variables */
 	@import "~bulma/sass/utilities/_all";
 
-	// Override Bulma variables
+	/* Override Bulma variables */
 	$primary: $coffee;
 
-	// Import the rest of framework
+	/* Import the rest of framework */
 	@import "~bulma";
 	@import "~buefy/src/scss/buefy";
 
-	// Custom styles
+	/* Custom styles */
 	html {
 		height: 100%;
 	}
