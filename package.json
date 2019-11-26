@@ -12,8 +12,7 @@
 		"lint": "npm run lint:js && npm run lint:css",
 		"dev": "nodemon ./app/backend/server.js",
 		"build": "npm run lint && nuxt build -c ./app/nuxt.config.js",
-		"start": "node ./app/backend/server.js",
-		"heroku-postbuild": "npm run build"
+		"start": "node ./app/backend/server.js"
 	},
 	"dependencies": {
 		"compression": "^1.7.4",
