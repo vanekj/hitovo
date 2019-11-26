@@ -7,7 +7,14 @@
 		],
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
+		"sourceMap": true,
 		"checkJs": false
-	}
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"include": [
+		"app/backend/**/*",
+		"app/shared/**/*"
+	]
 }
