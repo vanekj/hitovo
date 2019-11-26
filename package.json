@@ -7,26 +7,32 @@
 		"email": "info@jakub-vanek.eu"
 	},
 	"scripts": {
-		"start": "vue-cli-service serve",
-		"build": "vue-cli-service build"
+		"lint:js": "eslint app/**/*.{js,vue}",
+		"lint:css": "stylelint app/**/*.{css,vue}",
+		"lint": "npm run lint:js && npm run lint:css",
+		"dev": "nodemon ./app/backend/server.js",
+		"build": "npm run lint && nuxt build -c ./app/nuxt.config.js",
+		"start": "node ./app/backend/server.js",
+		"heroku-postbuild": "npm run build"
 	},
 	"dependencies": {
-		"buefy": "^0.8.6",
-		"vue": "^2.6.10"
+		"compression": "^1.7.4",
+		"express": "^4.17.1",
+		"helmet": "^3.21.2",
+		"nuxt": "^2.10.2",
+		"nuxt-buefy": "^0.3.19"
 	},
 	"devDependencies": {
-		"@vue/cli-service": "^4.0.5",
 		"babel-eslint": "^10.0.3",
-		"eslint": "^6.6.0",
-		"eslint-plugin-vue": "^5.2.3",
-		"postcss-import": "^12.0.1",
-		"postcss-preset-env": "^6.7.0",
-		"sass": "^1.23.3",
+		"dotenv": "^8.2.0",
+		"eslint": "^6.7.1",
+		"eslint-plugin-vue": "^6.0.1",
+		"node-sass": "^4.13.0",
+		"nodemon": "^2.0.1",
 		"sass-loader": "^8.0.0",
-		"stylelint": "^11.1.1",
+		"stylelint": "^12.0.0",
 		"stylelint-config-standard": "^19.0.0",
-		"stylelint-processor-html": "^1.0.0",
-		"vue-template-compiler": "^2.6.10"
+		"stylelint-processor-html": "^1.0.0"
 	},
 	"repository": {
 		"type": "git",
