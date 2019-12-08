@@ -1,0 +1,10 @@
+{
+	"javascript.suggestionActions.enabled": false,
+	"typescript.validate.enable": false,
+	"path-intellisense.mappings": {
+		"@": "${workspaceRoot}/app/shared"
+	},
+	"files.associations": {
+		"captain-definition": "json"
+	}
+}
