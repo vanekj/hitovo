@@ -11,7 +11,7 @@
 		"lint:css": "stylelint app/**/*.{css,vue}",
 		"lint": "npm run lint:js && npm run lint:css",
 		"dev": "nodemon ./app/backend/server.js",
-		"build": "npm run lint && nuxt build -c ./app/nuxt.config.js",
+		"build": "nuxt build -c ./app/nuxt.config.js",
 		"start": "node ./app/backend/server.js"
 	},
 	"dependencies": {
@@ -26,6 +26,7 @@
 		"dotenv": "^8.2.0",
 		"eslint": "^6.7.2",
 		"eslint-plugin-vue": "^6.0.1",
+		"husky": "^3.1.0",
 		"node-sass": "^4.13.0",
 		"nodemon": "^2.0.2",
 		"sass-loader": "^8.0.0",
