@@ -11,18 +11,17 @@ module.exports = {
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			{ name: 'description', content: 'Coffee to water calculator' }
 		],
-		script: [
-			{ src: 'https://www.googletagmanager.com/gtag/js?id=UA-156659199-1', async: true }
-		],
 		link: [
 			{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
 		]
 	},
+	buildModules: [
+		['@nuxtjs/google-analytics', {
+			id: 'UA-156659199-1'
+		}]
+	],
 	modules: [
 		'nuxt-buefy'
-	],
-	plugins: [
-		{ src: '~plugins/google-analytics.js', mode: 'client' }
 	],
 	srcDir: './app/shared'
 };
