@@ -1,5 +1,11 @@
 <template>
 	<div id="app">
+		<div class="container has-text-centered is-size-7">
+			<p>
+				The app is in early stages of <a href="https://github.com/hitovo/hitovo">development</a>, so please be patient with it 😇<br />
+				Ping me your questions, problems and ideas on <a href="mailto:info@jakub-vanek.eu">info@jakub-vanek.eu</a>
+			</p>
+		</div>
 		<div class="container">
 			<div class="card">
 				<div class="card-header">
@@ -173,7 +179,6 @@
 
 	body {
 		min-height: 100%;
-		user-select: none;
 		background-color: $white-bis;
 	}
 
