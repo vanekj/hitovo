@@ -6,5 +6,6 @@
 	},
 	"files.associations": {
 		"captain-definition": "json"
-	}
+	},
+	"editor.tabSize": 2
 }
