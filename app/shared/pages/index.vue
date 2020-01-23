@@ -2,8 +2,8 @@
 	<div id="app">
 		<div class="container has-text-centered is-size-7">
 			<p>
-				The app is in early stages of <a href="https://github.com/hitovo/hitovo">development</a>, so please be patient with it 😇<br />
-				Ping me your questions, problems and ideas on <a href="mailto:info@jakub-vanek.eu">info@jakub-vanek.eu</a>
+				The app is in early stages of <a href="https://github.com/hitovo/hitovo" target="_blank">development</a>, so please be patient with it 😇<br />
+				Ping me your questions, problems and ideas on <a href="mailto:info@hitovo.coffee">info@hitovo.coffee</a>
 			</p>
 		</div>
 		<div class="container">
