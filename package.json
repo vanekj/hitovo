@@ -39,10 +39,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vanekj/hitovo"
+		"url": "https://github.com/hitovo/hitovo"
 	},
 	"bugs": {
-		"email": "info@jakub-vanek.eu",
-		"url": "https://github.com/vanekj/hitovo/issues"
+		"email": "info@hitovo.coffee",
+		"url": "https://github.com/hitovo/hitovo/issues"
 	}
 }
