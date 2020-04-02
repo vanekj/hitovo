@@ -30,4 +30,8 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           eslint: true
+          eslint_dir: app/
+          eslint_extensions: js,vue
           stylelint: true
+          stylelint_dir: app/
+          stylelint_extensions: css,vue
