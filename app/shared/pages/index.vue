@@ -90,19 +90,19 @@
 						label: 'Chemex',
 						image: 'chemex'
 					}, {
-						value: '1:6',
+						value: '2:25',
 						label: 'Aeropress',
 						image: 'aeropress'
 					}, {
-						value: '1:12',
+						value: '1:15',
 						label: 'French Press',
 						image: 'frenchpress'
 					}, {
-						value: '1:10',
+						value: '1:9',
 						label: 'Moka Pot',
 						image: 'mokapot'
 					}, {
-						value: '9:40',
+						value: '1:10',
 						label: 'Cold Brew',
 						image: 'v60'
 					}]
