@@ -19,6 +19,7 @@
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
 		"helmet": "^3.22.0",
+		"lodash.clonedeep": "^4.5.0",
 		"nuxt": "^2.12.2",
 		"nuxt-buefy": "^0.3.31"
 	},
