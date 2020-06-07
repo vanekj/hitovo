@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div v-if="selected" id="app">
 		<div class="container has-text-centered is-size-7">
 			<p>
 				The app is in early stages of <a href="https://github.com/hitovo/hitovo" target="_blank">development</a>, so please be patient with it 😇<br />
@@ -14,16 +14,16 @@
 				<div class="card-content">
 					<div class="columns">
 						<div class="column">
-							<label v-for="ratio in items.ratios" :key="ratio.value" class="h-label">
-								<b-radio v-model="selected.ratio" name="ratio" :native-value="ratio.value" @input="calculateRatio(ratio)">
-									<span :class="{ 'has-text-weight-medium': selected.ratio === ratio.value }">{{ ratio.label }}</span>
+							<label v-for="ratio in items.ratios" :key="ratio.label" class="h-label">
+								<b-radio v-model="selected.label" name="ratio" :native-value="ratio.label" @input="selectRatio(ratio)">
+									<span :class="{ 'has-text-weight-medium': selected.label === ratio.label }">{{ ratio.label }}</span>
 								</b-radio>
 							</label>
 						</div>
 						<div class="column">
 							<div class="h-images h-very-center">
 								<transition-group name="fade">
-									<img v-for="ratio in items.ratios" v-show="ratio.value === selected.ratio" :key="ratio.value" :src="`/assets/${ratio.image}.svg`" />
+									<img v-for="ratio in items.ratios" v-show="ratio.label === selected.label" :key="ratio.label" :src="`/assets/${ratio.image}.svg`" />
 								</transition-group>
 							</div>
 						</div>
@@ -39,11 +39,11 @@
 				<div class="card-content">
 					<div class="columns is-gapless">
 						<div class="column">
-							<b-numberinput v-model="selected.customRatio[0]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
+							<b-numberinput v-model="selected.value[0]" type="dark" min="1" controls-position="compact" size="is-medium" expanded />
 						</div>
 						<div class="column is-2 is-size-4 has-text-weight-bold h-very-center">:</div>
 						<div class="column">
-							<b-numberinput v-model="selected.customRatio[1]" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="customRatio" />
+							<b-numberinput v-model="selected.value[1]" type="dark" min="1" controls-position="compact" size="is-medium" expanded />
 						</div>
 					</div>
 				</div>
@@ -57,7 +57,7 @@
 							<div class="card-header-title">Coffee</div>
 						</div>
 						<div class="card-content">
-							<b-numberinput v-model="calculated.coffee" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculateWater" />
+							<b-numberinput v-model="calculated.coffee" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculate" />
 						</div>
 					</div>
 				</div>
@@ -67,7 +67,7 @@
 							<div class="card-header-title">Water</div>
 						</div>
 						<div class="card-content">
-							<b-numberinput v-model="calculated.water" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculateCoffee" />
+							<b-numberinput v-model="calculated.water" type="dark" min="1" controls-position="compact" size="is-medium" expanded @input="calculate" />
 						</div>
 					</div>
 				</div>
@@ -77,82 +77,70 @@
 </template>
 
 <script>
+	import _cloneDeep from 'lodash.clonedeep';
+
 	export default {
 		data() {
 			return {
 				items: {
 					ratios: [{
-						value: '3:50',
+						value: [3, 50],
 						label: 'V60',
-						image: 'v60'
+						image: 'v60',
+						default: true
 					}, {
-						value: '1:17',
+						value: [1, 17],
 						label: 'Chemex',
 						image: 'chemex'
 					}, {
-						value: '2:25',
+						value: [2, 25],
 						label: 'Aeropress',
 						image: 'aeropress'
 					}, {
-						value: '1:15',
+						value: [1, 15],
 						label: 'French Press',
 						image: 'frenchpress'
 					}, {
-						value: '1:9',
+						value: [1, 9],
 						label: 'Moka Pot',
 						image: 'mokapot'
 					}, {
-						value: '1:10',
+						value: [1, 10],
 						label: 'Cold Brew',
 						image: 'v60'
 					}]
 				},
-				selected: {
-					ratio: null,
-					customRatio: [0, 0]
-				},
+				selected: null,
 				calculated: {
-					ratio: null,
 					coffee: 15,
 					water: 250
 				}
 			};
 		},
+		computed: {
+			defaultRatio() {
+				return this.items.ratios.find((ratio) => ratio.default);
+			}
+		},
 		watch: {
 			selected: {
 				handler() {
-					this.calculateWater();
-					this.calculateCoffee();
+					this.calculate();
 				},
 				deep: true
 			}
 		},
 		created() {
-			this.calculateRatio(this.items.ratios[0]);
+			this.selectRatio(this.defaultRatio);
 		},
 		methods: {
-			calculateRatio(selectedRatio) {
-				let ratioArray = selectedRatio.value.split(':').map(Number);
-				this.calculated.ratio = ratioArray[0] / ratioArray[1];
-				this.selected.ratio = selectedRatio.value;
-				this.selected.customRatio = ratioArray;
+			selectRatio(selectedRatio) {
+				this.selected = _cloneDeep(selectedRatio);
 			},
-			customRatio() {
-				let ratioString = this.selected.customRatio.join(':'),
-					matchingRatio = this.items.ratios.find((ratio) => ratio.value === ratioString);
-				if (matchingRatio) {
-					this.calculateRatio(matchingRatio);
-				} else {
-					this.calculateRatio({
-						value: ratioString
-					});
-				}
-			},
-			calculateWater() {
-				this.calculated.water = Math.round(this.calculated.coffee / this.calculated.ratio);
-			},
-			calculateCoffee() {
-				this.calculated.coffee = Math.round(this.calculated.water * this.calculated.ratio);
+			calculate() {
+				let ratio = this.selected.value[0] / this.selected.value[1];
+				this.calculated.water = Math.round(this.calculated.coffee / ratio);
+				this.calculated.coffee = Math.round(this.calculated.water * ratio);
 			}
 		}
 	};
