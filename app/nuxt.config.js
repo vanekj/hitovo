@@ -1,6 +1,6 @@
 /* eslint-disable object-property-newline,object-curly-newline */
 module.exports = {
-	mode: 'universal',
+	telemetry: true,
 	head: {
 		htmlAttrs: {
 			lang: 'en'

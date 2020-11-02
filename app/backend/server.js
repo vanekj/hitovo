@@ -21,7 +21,9 @@ const config = require('./config'),
 	}
 
 	// Enable security headers
-	app.use(helmet());
+	app.use(helmet({
+		contentSecurityPolicy: config.csp
+	}));
 
 	// Enable gzip compression
 	app.use(compression());
@@ -35,7 +37,7 @@ const config = require('./config'),
 			console.log('Error while starting the HTTP server', error);
 			process.exit(1);
 		} else {
-			console.log(`HTTP server running on port ${config.port}`);
+			console.log(`HTTP server running on port http://localhost:${config.port}`);
 		}
 	});
 })();
