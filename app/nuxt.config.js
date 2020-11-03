@@ -18,6 +18,9 @@ module.exports = {
 	buildModules: [
 		['@nuxtjs/google-analytics', {
 			id: 'UA-156659199-1'
+		}],
+		['@nuxtjs/google-adsense', {
+			id: 'ca-pub-0416935199921114'
 		}]
 	],
 	modules: [
