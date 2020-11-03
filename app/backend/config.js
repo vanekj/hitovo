@@ -11,29 +11,6 @@ if (isDevelopment) {
 	});
 }
 
-// Content Security Policy rules for Helmet middleware
-const csp = {
-	directives: {
-		defaultSrc: [
-			'\'self\''
-		],
-		fontSrc: [
-			'http://cdn.materialdesignicons.com'
-		],
-		styleSrc: [
-			'\'self\'',
-			'\'unsafe-inline\'',
-			'http://cdn.materialdesignicons.com'
-		],
-		scriptSrc: [
-			'\'self\'',
-			'\'unsafe-inline\'',
-			'\'unsafe-eval\'',
-			'https://www.google-analytics.com'
-		]
-	}
-};
-
 // Web server port
 const port = process.env.PORT || 80;
 
@@ -41,6 +18,5 @@ const port = process.env.PORT || 80;
 module.exports = {
 	isDevelopment,
 	isProduction,
-	csp,
 	port
 };

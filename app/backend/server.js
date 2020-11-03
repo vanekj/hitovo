@@ -22,7 +22,7 @@ const config = require('./config'),
 
 	// Enable security headers
 	app.use(helmet({
-		contentSecurityPolicy: config.csp
+		contentSecurityPolicy: false
 	}));
 
 	// Enable gzip compression
