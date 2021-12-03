@@ -1,53 +1,27 @@
 {
-	"name": "hitovo",
-	"version": "1.2.0",
-	"description": "Coffee to water ratio calculator application",
-	"author": {
-		"name": "Jakub Vaněk",
-		"email": "info@jakub-vanek.eu"
-	},
+	"private": true,
 	"scripts": {
-		"lint:js": "eslint app/**/*.{js,vue}",
-		"lint:css": "stylelint app/**/*.{css,vue}",
-		"lint": "npm run lint:js && npm run lint:css",
-		"dev": "nodemon ./app/backend/server.js",
-		"build": "nuxt build -c ./app/nuxt.config.js",
-		"start": "node ./app/backend/server.js"
-	},
-	"dependencies": {
-		"@nuxtjs/google-analytics": "^2.4.0",
-		"compression": "^1.7.4",
-		"express": "^4.17.1",
-		"helmet": "^4.2.0",
-		"lodash.clonedeep": "^4.5.0",
-		"nuxt": "^2.14.7",
-		"nuxt-buefy": "^0.4.4"
+		"dev": "nuxi dev",
+		"build": "nuxi build",
+		"start": "node .output/server/index.mjs",
+		"format": "prettier --write src/**/*.{json,ts,vue} *.{json,ts,vue}",
+		"lint:ts": "eslint src/**/*.ts *.ts --no-error-on-unmatched-pattern",
+		"lint:vue": "eslint src/**/*.vue *.vue --no-error-on-unmatched-pattern",
+		"lint": "npm run lint:ts && npm run lint:vue",
+		"prepare": "husky install"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^11.0.0",
-		"@commitlint/config-conventional": "^11.0.0",
-		"babel-eslint": "^10.1.0",
-		"dotenv": "^8.2.0",
-		"eslint": "^7.12.1",
-		"eslint-plugin-vue": "^7.1.0",
-		"husky": "^4.3.0",
-		"node-sass": "^5.0.0",
-		"nodemon": "^2.0.6",
-		"sass-loader": "^10.0.5",
-		"stylelint": "^13.7.2",
-		"stylelint-config-standard": "^20.0.0",
-		"stylelint-processor-html": "^1.0.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/hitovo/hitovo"
-	},
-	"bugs": {
-		"email": "info@hitovo.coffee",
-		"url": "https://github.com/hitovo/hitovo/issues"
+		"@commitlint/cli": "^15.0.0",
+		"@commitlint/config-conventional": "^15.0.0",
+		"eslint": "^8.3.0",
+		"eslint-plugin-nuxt": "^3.1.0",
+		"husky": "^7.0.4",
+		"lint-staged": "^12.1.2",
+		"nuxt3": "latest",
+		"prettier": "^2.5.0"
 	},
 	"volta": {
-		"node": "12.22.7",
-		"npm": "6.14.15"
+		"node": "16.13.1",
+		"npm": "8.2.0"
 	}
 }

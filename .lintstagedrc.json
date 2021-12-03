@@ -1,0 +1,4 @@
+{
+	"*.ts": "eslint",
+	"*.vue": "eslint"
+}

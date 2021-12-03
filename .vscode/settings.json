@@ -1,11 +1,13 @@
 {
-	"javascript.suggestionActions.enabled": false,
-	"typescript.validate.enable": false,
-	"path-intellisense.mappings": {
-		"@": "${workspaceRoot}/app/shared"
-	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.formatOnSave": true,
+	"javascript.validate.enable": false,
 	"files.associations": {
+		".env*": "dotenv",
+		".css": "postcss",
 		"captain-definition": "json"
 	},
-	"editor.tabSize": 2
+	"[vue]": {
+		"editor.defaultFormatter": "johnsoncodehk.volar"
+	}
 }
