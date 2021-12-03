@@ -15,7 +15,6 @@
 		"start": "node ./app/backend/server.js"
 	},
 	"dependencies": {
-		"@nuxtjs/google-adsense": "^1.1.3",
 		"@nuxtjs/google-analytics": "^2.4.0",
 		"compression": "^1.7.4",
 		"express": "^4.17.1",
@@ -46,5 +45,9 @@
 	"bugs": {
 		"email": "info@hitovo.coffee",
 		"url": "https://github.com/hitovo/hitovo/issues"
+	},
+	"volta": {
+		"node": "12.22.7",
+		"npm": "6.14.15"
 	}
 }
