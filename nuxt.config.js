@@ -1,6 +1,7 @@
 /* eslint-disable object-property-newline,object-curly-newline */
 module.exports = {
 	telemetry: true,
+	target: 'static',
 	head: {
 		htmlAttrs: {
 			lang: 'en'
@@ -23,5 +24,5 @@ module.exports = {
 	modules: [
 		'nuxt-buefy'
 	],
-	srcDir: './app/shared'
+	srcDir: 'app/'
 };

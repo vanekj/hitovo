@@ -14,7 +14,6 @@
 		"node_modules"
 	],
 	"include": [
-		"app/backend/**/*",
-		"app/shared/**/*"
+		"app/**/*",
 	]
 }

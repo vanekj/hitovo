@@ -1,24 +1,22 @@
 {
 	"name": "hitovo",
-	"version": "1.2.0",
+	"version": "1.3.0",
 	"description": "Coffee to water ratio calculator application",
 	"author": {
 		"name": "Jakub Vaněk",
 		"email": "info@jakub-vanek.eu"
 	},
 	"scripts": {
-		"lint:js": "eslint app/**/*.{js,vue}",
-		"lint:css": "stylelint app/**/*.{css,vue}",
+		"lint:js": "eslint \"app/**/*.{js,vue}\"",
+		"lint:css": "stylelint \"app/**/*.{css,vue}\"",
 		"lint": "npm run lint:js && npm run lint:css",
-		"dev": "nodemon ./app/backend/server.js",
-		"build": "nuxt build -c ./app/nuxt.config.js",
-		"start": "node ./app/backend/server.js"
+		"dev": "cross-env HOST=0.0.0.0 PORT=3000 nuxt",
+		"build": "nuxt build",
+		"generate": "nuxt generate",
+		"start": "nuxt start"
 	},
 	"dependencies": {
 		"@nuxtjs/google-analytics": "^2.4.0",
-		"compression": "^1.7.4",
-		"express": "^4.17.1",
-		"helmet": "^4.2.0",
 		"lodash.clonedeep": "^4.5.0",
 		"nuxt": "^2.14.7",
 		"nuxt-buefy": "^0.4.4"
@@ -27,12 +25,11 @@
 		"@commitlint/cli": "^11.0.0",
 		"@commitlint/config-conventional": "^11.0.0",
 		"babel-eslint": "^10.1.0",
-		"dotenv": "^8.2.0",
+		"cross-env": "7.0.3",
 		"eslint": "^7.12.1",
 		"eslint-plugin-vue": "^7.1.0",
 		"husky": "^4.3.0",
 		"node-sass": "^5.0.0",
-		"nodemon": "^2.0.6",
 		"sass-loader": "^10.0.5",
 		"stylelint": "^13.7.2",
 		"stylelint-config-standard": "^20.0.0",
@@ -40,11 +37,11 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/hitovo/hitovo"
+		"url": "https://github.com/vanekj/hitovo"
 	},
 	"bugs": {
-		"email": "info@hitovo.coffee",
-		"url": "https://github.com/hitovo/hitovo/issues"
+		"email": "info@jakub-vanek.eu",
+		"url": "https://github.com/vanekj/hitovo/issues"
 	},
 	"volta": {
 		"node": "12.22.7",
